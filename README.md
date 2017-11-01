@@ -10,8 +10,9 @@ Example Usage:
 ```javascript
 const key          = '...'; // API Key
 const secret       = '...'; // API Private Key
-const EthpoolClient = require('Ethpool-api');
-const Ethpool       = new EthpoolClient(key, secret);
+const wallet       = '...'; // API Wallet Key
+const EthermineClient = require('Ethermine-api');
+const Ethermine       = new EthermineClient(key, secret);
 
 (async () => {
 	// Display user's balance
