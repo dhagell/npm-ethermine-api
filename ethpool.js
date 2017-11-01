@@ -4,13 +4,13 @@ const qs     = require('qs');
 
 // Public/Private method names
 const methods = {
-	public  : [ 'Time', 'Assets', 'AssetPairs', 'Ticker', 'Depth', 'Trades', 'Spread', 'OHLC' ],
-	private : [ 'Balance', 'TradeBalance', 'OpenOrders', 'ClosedOrders', 'QueryOrders', 'TradesHistory', 'QueryTrades', 'OpenPositions', 'Ledgers', 'QueryLedgers', 'TradeVolume', 'AddOrder', 'CancelOrder', 'DepositMethods', 'DepositAddresses', 'DepositStatus', 'WithdrawInfo', 'Withdraw', 'WithdrawStatus', 'WithdrawCancel' ],
+	public  : [ 'poolStats', 'credits', 'blocks/history', 'networkStats', 'servers/history' ],
+	private : [ 'miner/blocks', 'miner/history', 'miner/payouts', 'miner/rounds', 'miner/settings', 'miner/currentStats', 'miner/workers', 'worker/history', 'worker/currentStats', 'workers/monitor' ],
 };
 
 // Default options
 const defaults = {
-	url     : 'https://api.kraken.com',
+	url     : 'http://api.ethpool.org',
 	version : 0,
 	timeout : 5000,
 };
@@ -30,7 +30,7 @@ const getMessageSignature = (path, request, secret, nonce) => {
 // Send an API request
 const rawRequest = async (url, headers, data, timeout) => {
 	// Set custom User-Agent string
-	headers['User-Agent'] = 'Kraken Javascript API Client';
+	headers['User-Agent'] = 'Ethpool Javascript API Client';
 
 	const options = { headers, timeout };
 
@@ -48,7 +48,7 @@ const rawRequest = async (url, headers, data, timeout) => {
 			.map((e) => e.substr(1));
 
 		if(!error.length) {
-			throw new Error("Kraken API returned an unknown error");
+			throw new Error("Ethpool API returned an unknown error");
 		}
 
 		throw new Error(error.join(', '));
@@ -58,21 +58,20 @@ const rawRequest = async (url, headers, data, timeout) => {
 };
 
 /**
- * KrakenClient connects to the Kraken.com API
- * @param {String}        key               API Key
- * @param {String}        secret            API Secret
+ * EthpoolClient connects to the Ethpool.org API
+ * @param {String}        wallet            API Key
  * @param {String|Object} [options={}]      Additional options. If a string is passed, will default to just setting `options.otp`.
  * @param {String}        [options.otp]     Two-factor password (optional) (also, doesn't work)
  * @param {Number}        [options.timeout] Maximum timeout (in milliseconds) for all API-calls (passed to `request`)
  */
-class KrakenClient {
-	constructor(key, secret, options) {
+class EthpoolClient {
+	constructor(wallet, options) {
 		// Allow passing the OTP as the third argument for backwards compatibility
 		if(typeof options === 'string') {
 			options = { otp : options };
 		}
 
-		this.config = Object.assign({ key, secret }, defaults, options);
+		this.config = Object.assign({ wallet }, defaults, options);
 	}
 
 	/**
@@ -105,7 +104,7 @@ class KrakenClient {
 	 * @param  {String}   method   The API method (public or private)
 	 * @param  {Object}   params   Arguments to pass to the api call
 	 * @param  {Function} callback A callback function to be executed when the request is complete
-	 * @return {Object}            The request object
+	 * @return {Object}            The request object key
 	 */
 	publicMethod(method, params, callback) {
 		params = params || {};
@@ -159,12 +158,12 @@ class KrakenClient {
 		const signature = getMessageSignature(
 			path,
 			params,
-			this.config.secret,
+			this.config.wallet,
 			params.nonce
 		);
 
 		const headers = {
-			'API-Key'  : this.config.key,
+			'API-Key'  : this.config.wallet,
 			'API-Sign' : signature,
 		};
 
@@ -180,4 +179,4 @@ class KrakenClient {
 	}
 }
 
-module.exports = KrakenClient;
+module.exports = EthpoolClient;
