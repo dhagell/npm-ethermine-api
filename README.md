@@ -1,24 +1,24 @@
-Node Kraken
+Node Ethpool
 ===========
 
-NodeJS Client Library for the Kraken (kraken.com) API
+NodeJS Client Library for the Ethpool (Ethpool.org) API
 
-This is an asynchronous node js client for the kraken.com API. It exposes all the API methods found here: https://www.kraken.com/help/api through the ```api``` method:
+This is an asynchronous node js client for the Ethpool.org API. It exposes all the API methods found here: http://api.ethpool.org/docs through the ```api``` method:
 
 Example Usage:
 
 ```javascript
 const key          = '...'; // API Key
 const secret       = '...'; // API Private Key
-const KrakenClient = require('kraken-api');
-const kraken       = new KrakenClient(key, secret);
+const EthpoolClient = require('Ethpool-api');
+const Ethpool       = new EthpoolClient(key, secret);
 
 (async () => {
 	// Display user's balance
-	console.log(await kraken.api('Balance'));
+	console.log(await Ethpool.api('Balance'));
 
 	// Get Ticker Info
-	console.log(await kraken.api('Ticker', { pair : 'XXBTZUSD' }));
+	console.log(await Ethpool.api('Ticker', { pair : 'XXBTZUSD' }));
 })();
 ```
 
@@ -37,10 +37,9 @@ function(error, data) {
 }
 ```
 
-Thanks to @tehsenaus and @petermrg for pointing this out.
+
 
 Credit:
 
-I used the example php implementation at https://github.com/payward/kraken-api-client and the python implementation at https://github.com/veox/python3-krakenex as references.
+I used the example nodejs Kraken implementation at https://github.com/nothingisdead/npm-kraken-api
 
-BTC donation address: 12X8GyUpfYxEP7sh1QaU4ngWYpzXJByQn5
