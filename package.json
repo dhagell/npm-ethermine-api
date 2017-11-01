@@ -1,15 +1,15 @@
 {
-  "name": "kraken-api",
+  "name": "ethpool-api",
   "version": "1.0.0",
-  "description": "kraken.com API client library for NodeJS",
+  "description": "ethpool.org API client library for NodeJS",
   "keywords": [
-    "kraken",
+    "ethpool",
     "api",
-    "btc",
-    "bitcoin"
+    "eth",
+    "ethereum"
   ],
-  "author": "Robert Myers (https://github.com/nothingisdead)",
-  "contributors": [],
+  "author": "Donald Hagell (https://github.com/dhagell)",
+  "contributors": ["Robert Myers (https://github.com/nothingisdead)"],
   "license": "MIT",
   "dependencies": {
     "got": "^7.1.0",
@@ -17,15 +17,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nothingisdead/npm-kraken-api"
+    "url": "https://github.com/dhagell/npm-ethpool-api"
   },
-  "main": "kraken.js",
+  "main": "ethpool.js",
   "engines": {
     "node": ">=0.10"
   },
   "bugs": {
-    "url": "https://github.com/nothingisdead/npm-kraken-api/issues",
-    "email": "rbmyr8@gmail.com"
+    "url": "https://github.com/dhagell/npm-ethpool-api/issues",
+    "email": "donhagell@gmail.com"
   },
   "readmeFilename": "README.md"
 }
