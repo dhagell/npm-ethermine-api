@@ -1,9 +1,9 @@
 {
-  "name": "ethpool-api",
+  "name": "ethermine-api",
   "version": "1.0.0",
-  "description": "ethpool.org API client library for NodeJS",
+  "description": "ethermine.org API client library for NodeJS",
   "keywords": [
-    "ethpool",
+    "ethermine",
     "api",
     "eth",
     "ethereum"
@@ -17,14 +17,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dhagell/npm-ethpool-api"
+    "url": "https://github.com/dhagell/npm-ethermine-api"
   },
-  "main": "ethpool.js",
+  "main": "ethermine.js",
   "engines": {
     "node": ">=0.10"
   },
   "bugs": {
-    "url": "https://github.com/dhagell/npm-ethpool-api/issues",
+    "url": "https://github.com/dhagell/npm-ethermine-api/issues",
     "email": "donhagell@gmail.com"
   },
   "readmeFilename": "README.md"
